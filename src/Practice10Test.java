@@ -3,13 +3,13 @@ import java.util.Iterator;
 
 
 public class Practice10Test {
-	
-	
+
+
 	public Graph getGraph(int size) {
 		return new GraphImplementation(size);
 	}
 
-	
+
 	public boolean createGraphTest() {
 		// Just create a graph and expect it not to blow up...
 		try {
@@ -20,7 +20,7 @@ public class Practice10Test {
 		return true;
 	}
 
-	
+
 	public boolean negativeGraphTest() {
 		// Just create a graph and get invalid edges...
 		try {
@@ -31,15 +31,15 @@ public class Practice10Test {
 		}
 		return false;
 	}
-	
-	
+
+
 	public boolean addEdgeTest() {
 		try {
 			Graph g = getGraph(3);
-		
+
 			g.addEdge(0, 1);
 			g.addEdge(0, 2);
-		
+
 			// Check the neighbours...
 			Iterator<Integer> neighbours = g.neighbors(0).iterator();
 			boolean contains1 = false;
@@ -51,7 +51,7 @@ public class Practice10Test {
 				if (n == 1) contains1 = true;
 				if (n == 2) contains2 = true;
 			}
-		
+
 			return contains1 && contains2 && items == 2;
 		} catch (Exception e) {
 			return false;
@@ -63,7 +63,7 @@ public class Practice10Test {
 		try {
 			Graph g = getGraph(3);
 			int [] expected = {0, 2, 1};
-		
+
 			g.addEdge(0, 1);
 			g.addEdge(0, 2);
 			g.addEdge(2, 1);
@@ -82,28 +82,28 @@ public class Practice10Test {
 
 	public void runTest () {
 		int grade = 0;
-		
+
 		if (createGraphTest()) {
 			grade += 10;
 			System.out.println("[+10%] Passed create graph test");
 		} else {
 			System.out.println("[    ] Failed create graph test");
 		}
-		
+
 		if (negativeGraphTest()) {
 			grade += 10;
 			System.out.println("[+10%] Passed negative graph test");
 		} else {
 			System.out.println("[    ] Failed negative graph test");
 		}
-		
+
 		if (addEdgeTest()) {
 			grade += 30;
 			System.out.println("[+30%] Passed adding edge / check neighbours test");
 		} else {
 			System.out.println("[    ] Failed adding edge / check neighbours test");
 		}
-		
+
 		// Topological sort will be checked by hand, because ...
 		if (topologicalSortTest()) {
 			grade += 50;
@@ -111,7 +111,7 @@ public class Practice10Test {
 		} else {
 			System.out.println("[    ] Failed topological sort test");
 		}
-		
+
 		System.out.println("Starting point for this assignment: " + grade + "%");
 	}
 
